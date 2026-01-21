@@ -65,11 +65,30 @@
             aspect-ratio: 1/1;
             margin-bottom: 1rem;
             border: 1px solid #e2e8f0;
+            position: relative;
         }
         .product-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: 10;
+        }
+        .img-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #e2e8f0;
+            color: #64748b;
+            font-size: 0.875rem;
+            padding: 1rem;
+            text-align: center;
+            z-index: 5;
         }
     </style>
 </head>
@@ -80,9 +99,9 @@
         <header class="text-center mb-12 relative pt-32">
             <h1 class="text-4xl md:text-5xl font-bold mb-2" style="color: #004481;">แผนธุรกิจน้ำมันนวด อัญญะดา</h1>
             <p class="text-xl md:text-2xl" style="color: #0077B6;">ประมาณการยอดขายและงบ Affiliate ปี 2569</p>
-            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-lg shadow-md bg-white p-2">
-                <!-- ตั้งชื่อไฟล์โลโก้ว่า logo.png -->
-                <img src="logo.png" alt="AunyaDa Logo" onerror="this.src='https://via.placeholder.com/150?text=Logo+AunyaDa'" class="w-full h-full object-contain rounded-lg">
+            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-lg shadow-md bg-white p-2 flex items-center justify-center">
+                <!--logo.png-->
+                <img src="logo.png" alt="AunyaDa Logo" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'" class="max-w-full max-h-full object-contain rounded-lg">
             </div>
         </header>
 
@@ -92,10 +111,13 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="card overflow-hidden text-center">
                     <div class="product-image-container">
-                        <!-- ตั้งชื่อไฟล์ภาพซองรีฟิลว่า refill-pouch.jpg -->
-                        <img src="refill-pouch.jpg" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                        <div style="display:none" class="flex items-center justify-center w-full h-full bg-gray-200 text-gray-500 italic p-4">
-                            กรุณาวางไฟล์ชื่อ refill-pouch.jpg ในโฟลเดอร์เดียวกับโค้ด
+                        <!--refill-pouch.jpg-->
+                        <img src="refill-pouch.jpg" alt="ซองรีฟิล อัญญะดา" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="img-fallback">
+                            <svg class="w-12 h-12 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>ไม่พบไฟล์ภาพ "refill-pouch.jpg"<br><small>กรุณาตรวจสอบชื่อไฟล์ในโฟลเดอร์เดียวกัน</small></span>
                         </div>
                     </div>
                     <p class="text-center text-sm text-gray-500 italic">น้ำมันนวดเกรดพรีเมียมในบรรจุภัณฑ์ประหยัด ลดขยะ และลดต้นทุนให้ร้านสปา</p>
@@ -120,7 +142,7 @@
             </div>
         </section>
 
-        <!-- ส่วนที่เหลือของโค้ดยังคงเดิมตามโครงสร้างล่าสุดของคุณ -->
+        <!-- ส่วนที่เหลือของโค้ดยังคงเดิม -->
         <section id="strategy" class="mb-16">
             <h2 class="section-title text-center">1. สรุปเป้าหมายหลักปี 2569</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -183,40 +205,42 @@
         <section id="bundling-promotion" class="mb-16">
             <h2 class="section-title text-center">3. โปรโมชั่นจับคู่ (High Conversion Bundles)</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-bold text-xl text-blue-900">🎁 ชุดเริ่มระบบ (Starter)</h3>
-                        <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">ขายดี</span>
+                <!-- แพ็กเกจที่ 1 -->
+                <div class="card bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 text-center">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-2xl text-blue-900 text-left">🎁 จับคู่ ซองรีฟิล+ขวดหัวปั้ม</h3>
+                        <span class="bg-blue-600 text-white text-sm px-3 py-1 rounded-full font-semibold uppercase tracking-wide">ขายดี</span>
                     </div>
-                    <div class="flex gap-4 mb-4">
-                        <div class="w-1/2 product-image-container mb-0">
-                            <!-- ตั้งชื่อไฟล์ภาพซอง 1L ว่า refill-1l.jpg -->
-                            <img src="refill-1l.jpg" alt="" onerror="this.src='https://via.placeholder.com/150?text=Refill+1L'">
-                        </div>
-                        <div class="w-1/2 product-image-container mb-0">
-                            <!-- ตั้งชื่อไฟล์ภาพขวด 300ml ว่า bottle-300ml.jpg -->
-                            <img src="bottle-300ml.jpg" alt="" onerror="this.src='https://via.placeholder.com/150?text=Bottle+300ml'">
+                    <div class="space-y-4 mb-6 text-lg">
+                        <div class="flex items-center text-blue-800">
+                            <span class="mr-2">🔹</span>
+                            <span class="font-semibold text-left">ซองรีฟิล (1 ลิตร) + ขวดปั้ม (300 มล.)</span>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-2 font-semibold">ซองรีฟิล (1L) + ขวดปั้ม (300ml)</p>
-                    <div class="text-3xl font-bold text-red-600">฿129</div>
+                    <div class="border-t border-blue-200 pt-4">
+                        <p class="text-sm text-gray-500 mb-1">ราคาพิเศษเพียง</p>
+                        <div class="text-5xl font-bold text-red-600">฿129</div>
+                        <p class="text-xs text-gray-400 mt-2 font-light">*ช่วยลดต้นทุนให้ร้านนวดได้ทันทีเมื่อเริ่มใช้งาน</p>
+                    </div>
                 </div>
-                <div class="card bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="font-bold text-xl text-green-900">🏢 ชุดคุ้มค่า (Wholesale)</h3>
-                        <span class="bg-green-600 text-white text-xs px-2 py-1 rounded-full">แนะนำ</span>
+
+                <!-- แพ็กเกจที่ 2 -->
+                <div class="card bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 text-center">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-2xl text-green-900 text-left">🏢 แกลลอน+ขวดหัวปั้ม</h3>
+                        <span class="bg-green-600 text-white text-sm px-3 py-1 rounded-full font-semibold uppercase tracking-wide">แนะนำ</span>
                     </div>
-                    <div class="flex gap-4 mb-4">
-                        <div class="w-1/2 product-image-container mb-0">
-                            <!-- ตั้งชื่อไฟล์ภาพแกลลอน 3L ว่า gallon-3l.jpg -->
-                            <img src="gallon-3l.jpg" alt="" onerror="this.src='https://via.placeholder.com/150?text=Gallon+3L'">
-                        </div>
-                        <div class="w-1/2 product-image-container mb-0">
-                            <img src="bottle-300ml.jpg" alt="" onerror="this.src='https://via.placeholder.com/150?text=Bottle+300ml'">
+                    <div class="space-y-4 mb-6 text-lg">
+                        <div class="flex items-center text-green-800">
+                            <span class="mr-2">🔹</span>
+                            <span class="font-semibold text-left">แกลลอน (3 ลิตร) + ขวดปั้ม (300 มล.)</span>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-2 font-semibold">แกลลอน (3L) + ขวดปั้ม (300ml)</p>
-                    <div class="text-3xl font-bold text-red-600">฿319</div>
+                    <div class="border-t border-green-200 pt-4">
+                        <p class="text-sm text-gray-500 mb-1">ราคาพิเศษเพียง</p>
+                        <div class="text-5xl font-bold text-red-600">฿319</div>
+                        <p class="text-xs text-gray-400 mt-2 font-light">*เหมาะสำหรับสต็อกในร้านนวดที่มีลูกค้าประจำ</p>
+                    </div>
                 </div>
             </div>
         </section>

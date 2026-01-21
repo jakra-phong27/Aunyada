@@ -63,6 +63,8 @@
             color: #E53E3E;
             font-weight: 600;
         }
+        
+        /* ปรับปรุงส่วนแสดงรูปภาพให้รองรับ iPhone/Safari ได้ดีขึ้น */
         .product-image-container {
             background-color: #ffffff;
             border-radius: 0.75rem;
@@ -71,26 +73,32 @@
             justify-content: center;
             overflow: hidden;
             width: 100%;
-            max-width: 400px; /* จำกัดขนาดสูงสุดบนจอ PC */
+            max-width: 450px; 
             margin-left: auto;
             margin-right: auto;
-            aspect-ratio: 1/1;
-            margin-bottom: 1rem;
-            border: 1px solid #e2e8f0;
+            /* ใช้เทคนิค padding-top แทน aspect-ratio เพื่อความเสถียรบนมือถือ */
             position: relative;
-            padding: 1rem;
+            height: 0;
+            padding-top: 100%; 
+            border: 1px solid #e2e8f0;
         }
+        
         .product-image-container img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; /* ให้ภาพขยายเกือบเต็มกล่อง */
+            height: 90%;
+            object-fit: contain; /* มั่นใจว่าเห็นครบทั้งภาพ */
             transition: transform 0.3s ease;
+            z-index: 10;
         }
+        
         .product-image-container:hover img {
-            transform: scale(1.05);
+            transform: translate(-50%, -50%) scale(1.05);
         }
+        
         .img-fallback {
             position: absolute;
             top: 0;
@@ -108,7 +116,7 @@
             text-align: center;
             z-index: 5;
         }
-        /* Mobile adjustment for Header */
+
         header {
             padding-top: 6rem;
         }
@@ -139,6 +147,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div class="card border-0 shadow-xl transition-shadow hover:shadow-2xl">
                     <div class="product-image-container bg-slate-50">
+                        <!-- ปรับปรุงการดึงภาพและการแสดงผล -->
                         <img src="./images/refill-pouch.jpg" alt="ซองรีฟิล อัญญะดา" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                         <div class="img-fallback">
                             <svg class="w-12 h-12 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,12 +233,12 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
-                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20">มกราคม</td><td>200</td><td>50</td><td class="text-gray-400">-</td><td>63,000</td><td class="budget-highlight">6,300</td><td class="text-left text-xs">เริ่มระบบ Affiliate, รับสมัครพาร์ทเนอร์</td></tr>
-                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20">กุมภาพันธ์</td><td>250</td><td>50</td><td class="text-gray-400">-</td><td>77,750</td><td class="budget-highlight">7,775</td><td class="text-left text-xs"> Ads เจาะกลุ่มร้านสปาและร้านนวด</td></tr>
-                            <tr class="bg-yellow-50"><td class="text-left font-bold italic sticky left-0 bg-yellow-50 z-20">มีนาคม (Launch)</td><td>100</td><td>50</td><td class="font-bold">4,000</td><td class="font-bold">393,500</td><td class="budget-highlight font-bold text-lg">39,350</td><td class="text-left text-xs font-semibold">แคมเปญเปิดตัว Refill รุกหนัก Affiliate</td></tr>
-                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20">เมษายน</td><td>100</td><td>50</td><td>4,000</td><td>393,500</td><td class="budget-highlight">39,350</td><td class="text-left text-xs">Combo Set รับสงกรานต์, โปรคู่ขวด 300ml</td></tr>
-                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20">พฤษภาคม</td><td>80</td><td>50</td><td>4,000</td><td>387,600</td><td class="budget-highlight">38,760</td><td class="text-left text-xs">Commission Bonus สำหรับยอดขายส่ง</td></tr>
-                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20">มิถุนายน</td><td>80</td><td>50</td><td>4,000</td><td>387,600</td><td class="budget-highlight">38,760</td><td class="text-left text-xs">วิดีโอรีวิวการใช้งาน "ขวดปั้ม 300ml"</td></tr>
+                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20 text-blue-900">มกราคม</td><td>200</td><td>50</td><td class="text-gray-400">-</td><td>63,000</td><td class="budget-highlight">6,300</td><td class="text-left text-xs">เริ่มระบบ Affiliate, รับสมัครพาร์ทเนอร์</td></tr>
+                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20 text-blue-900">กุมภาพันธ์</td><td>250</td><td>50</td><td class="text-gray-400">-</td><td>77,750</td><td class="budget-highlight">7,775</td><td class="text-left text-xs"> Ads เจาะกลุ่มร้านสปาและร้านนวด</td></tr>
+                            <tr class="bg-yellow-50"><td class="text-left font-bold italic sticky left-0 bg-yellow-50 z-20 text-blue-900">มีนาคม (Launch)</td><td>100</td><td>50</td><td class="font-bold">4,000</td><td class="font-bold">393,500</td><td class="budget-highlight font-bold text-lg">39,350</td><td class="text-left text-xs font-semibold">แคมเปญเปิดตัว Refill รุกหนัก Affiliate</td></tr>
+                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20 text-blue-900">เมษายน</td><td>100</td><td>50</td><td>4,000</td><td>393,500</td><td class="budget-highlight">39,350</td><td class="text-left text-xs">Combo Set รับสงกรานต์, โปรคู่ขวด 300ml</td></tr>
+                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20 text-blue-900">พฤษภาคม</td><td>80</td><td>50</td><td>4,000</td><td>387,600</td><td class="budget-highlight">38,760</td><td class="text-left text-xs">Commission Bonus สำหรับยอดขายส่ง</td></tr>
+                            <tr><td class="text-left font-bold sticky left-0 bg-white z-20 text-blue-900">มิถุนายน</td><td>80</td><td>50</td><td>4,000</td><td>387,600</td><td class="budget-highlight">38,760</td><td class="text-left text-xs">วิดีโอรีวิวการใช้งาน "ขวดปั้ม 300ml"</td></tr>
                             <tr class="row-total text-base">
                                 <td class="text-left sticky left-0 bg-sky-50 z-20">รวมครึ่งปีแรก</td>
                                 <td>~810</td>
